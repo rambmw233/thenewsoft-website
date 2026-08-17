@@ -1,0 +1,161 @@
+<section class="page-hero section--gradient">
+  <div class="container">
+    <h1 class="page-hero__title">Contact Us</h1>
+    <p class="page-hero__subtitle">Let's Build Something Great Together</p>
+  </div>
+</section>
+
+<section class="contact section">
+  <div class="container">
+    <div class="contact__grid">
+      <!-- Contact Form -->
+      <div class="contact__form-wrapper">
+        @if (isSubmitted()) {
+          <div class="contact__success">
+            <div class="contact__success-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>Thank You!</h3>
+            <p>{{ submitMessage() }}</p>
+          </div>
+        } @else {
+          <h2 class="contact__form-title">Send Us a Message</h2>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact__form" novalidate>
+            <div class="contact__form-row">
+              <div class="contact__field">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" formControlName="name" placeholder="Your full name" [class.invalid]="isFieldInvalid('name')">
+                @if (isFieldInvalid('name')) {
+                  <span class="contact__error">{{ getFieldError('name') }}</span>
+                }
+              </div>
+              <div class="contact__field">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" formControlName="email" placeholder="your@email.com" [class.invalid]="isFieldInvalid('email')">
+                @if (isFieldInvalid('email')) {
+                  <span class="contact__error">{{ getFieldError('email') }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="contact__form-row">
+              <div class="contact__field">
+                <label for="company">Company</label>
+                <input type="text" id="company" formControlName="company" placeholder="Your company name">
+              </div>
+              <div class="contact__field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" formControlName="phone" placeholder="Your phone number">
+              </div>
+            </div>
+
+            <div class="contact__form-row">
+              <div class="contact__field">
+                <label for="projectType">Project Type <span class="required">*</span></label>
+                <select id="projectType" formControlName="projectType" [class.invalid]="isFieldInvalid('projectType')">
+                  <option value="" disabled>Select project type</option>
+                  @for (type of projectTypes; track type) {
+                    <option [value]="type">{{ type }}</option>
+                  }
+                </select>
+                @if (isFieldInvalid('projectType')) {
+                  <span class="contact__error">{{ getFieldError('projectType') }}</span>
+                }
+              </div>
+              <div class="contact__field">
+                <label for="budgetRange">Budget Range</label>
+                <select id="budgetRange" formControlName="budgetRange">
+                  <option value="">Select budget range</option>
+                  @for (range of budgetRanges; track range) {
+                    <option [value]="range">{{ range }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div class="contact__field">
+              <label for="description">Project Description <span class="required">*</span></label>
+              <textarea id="description" formControlName="description" rows="5" placeholder="Tell us about your project, requirements and goals (minimum 20 characters)" [class.invalid]="isFieldInvalid('description')"></textarea>
+              @if (isFieldInvalid('description')) {
+                <span class="contact__error">{{ getFieldError('description') }}</span>
+              }
+            </div>
+
+            @if (submitError()) {
+              <div class="contact__submit-error">{{ submitMessage() }}</div>
+            }
+
+            <button type="submit" class="contact__submit" [disabled]="isSubmitting()">
+              @if (isSubmitting()) {
+                <span class="contact__spinner"></span>
+                Sending...
+              } @else {
+                Send Message
+              }
+            </button>
+          </form>
+        }
+      </div>
+
+      <!-- Contact Info Sidebar -->
+      <div class="contact__info">
+        <div class="contact__info-card">
+          <h3>Get In Touch</h3>
+          <p>Have a project in mind? We'd love to hear about it. Reach out and let's discuss how we can help.</p>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <a [href]="'mailto:' + company.email">{{ company.email }}</a>
+            </div>
+          </div>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <a [href]="'tel:' + company.phoneRaw">{{ company.phone }}</a>
+            </div>
+          </div>
+
+          <div class="contact__info-item">
+            <div class="contact__info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <div>
+              <h4>Website</h4>
+              <a [href]="company.websiteUrl" target="_blank" rel="noopener noreferrer">{{ company.domain }}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__info-card contact__info-card--dark">
+          <h3>Why Work With Us?</h3>
+          <ul>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-primary-light)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Expert .NET &amp; Angular Development
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-primary-light)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Transparent Communication
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-primary-light)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Quality-Focused Delivery
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-primary-light)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Long-Term Support
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="page-hero section--gradient">
+  <div class="container">
+    <h1 class="page-hero__title">Technologies</h1>
+    <p class="page-hero__subtitle">Technologies We Work With</p>
+  </div>
+</section>
+
+<section class="tech-page section">
+  <div class="container">
+    @for (group of technologyGroups; track group.category) {
+      <div class="tech-page__group">
+        <div class="tech-page__group-header">
+          <h2 class="tech-page__group-title">{{ group.category }}</h2>
+          <p class="tech-page__group-desc">{{ group.description }}</p>
+        </div>
+
+        <div class="tech-page__grid">
+          @for (tech of group.technologies; track tech.name) {
+            <div class="tech-page__card">
+              <div class="tech-page__card-badge">{{ tech.name.substring(0, 2).toUpperCase() }}</div>
+              <h3 class="tech-page__card-name">{{ tech.name }}</h3>
+              <p class="tech-page__card-desc">{{ tech.description }}</p>
+              <span class="tech-page__card-exp">{{ tech.experience }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<section class="page-hero section--gradient">
+  <div class="container">
+    <h1 class="page-hero__title">Our Portfolio</h1>
+    <p class="page-hero__subtitle">Sample case studies showcasing the type of work we deliver.</p>
+  </div>
+</section>
+
+<section class="portfolio section">
+  <div class="container">
+    <div class="portfolio__notice">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <p>These are sample case studies demonstrating our capabilities. Real client-approved projects will be added as they become available.</p>
+    </div>
+
+    <div class="portfolio__grid">
+      @for (project of projects; track project.id) {
+        <div class="portfolio__card">
+          <div class="portfolio__card-header">
+            <span class="portfolio__card-category">{{ project.category }}</span>
+            @if (project.isDemo) {
+              <span class="portfolio__card-demo">Sample</span>
+            }
+          </div>
+          <h3 class="portfolio__card-title">{{ project.title }}</h3>
+          <p class="portfolio__card-desc">{{ project.challenge.substring(0, 150) }}...</p>
+          <div class="portfolio__card-tech">
+            @for (tech of project.technologies; track tech) {
+              <span class="portfolio__tag">{{ tech }}</span>
+            }
+          </div>
+          <a [routerLink]="['/portfolio', project.slug]" class="portfolio__card-link">
+            View Case Study
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>

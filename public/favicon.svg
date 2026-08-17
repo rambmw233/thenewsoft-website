@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="tns-g" x1="0" y1="0" x2="40" y2="40">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#tns-g)"/>
+  <path d="M12 16L7 20L12 24M28 16L33 20L28 24M23 13L17 27" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,95 @@
+<header class="header" [class.scrolled]="isScrolled()" role="banner">
+  <div class="header__container">
+    <!-- Logo -->
+    <a routerLink="/" class="header__logo" [attr.aria-label]="company.name + ' - Home'" (click)="closeMobileMenu()">
+      <span class="header__logo-icon">
+        <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="10" fill="url(#header-logo-gradient)"/>
+          <path d="M12 16L7 20L12 24M28 16L33 20L28 24M23 13L17 27" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="header-logo-gradient" x1="0" y1="0" x2="40" y2="40">
+              <stop offset="0%" stop-color="#2563EB"/>
+              <stop offset="100%" stop-color="#60A5FA"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="header__logo-text">
+        <span class="header__logo-name">{{ company.name }}</span>
+        <span class="header__logo-tagline">{{ company.tagline }}</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" aria-label="Main navigation">
+      <ul class="header__nav-list">
+        @for (item of navItems; track item.route) {
+          <li class="header__nav-item">
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+              class="header__nav-link">
+              {{ item.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- CTA Button -->
+    <a [routerLink]="ctaNav.route" class="header__cta">
+      {{ ctaNav.label }}
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="header__hamburger"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen()"
+      aria-label="Toggle navigation menu"
+      aria-controls="mobile-menu">
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen()"></span>
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen()"></span>
+      <span class="header__hamburger-line" [class.open]="isMobileMenuOpen()"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    class="header__mobile-menu"
+    [class.open]="isMobileMenuOpen()"
+    id="mobile-menu"
+    role="navigation"
+    aria-label="Mobile navigation">
+    <nav class="header__mobile-nav">
+      <ul class="header__mobile-nav-list">
+        @for (item of navItems; track item.route) {
+          <li class="header__mobile-nav-item">
+            <a
+              [routerLink]="item.route"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+              class="header__mobile-nav-link"
+              (click)="closeMobileMenu()">
+              {{ item.label }}
+            </a>
+          </li>
+        }
+        <li class="header__mobile-nav-item">
+          <a
+            [routerLink]="ctaNav.route"
+            class="header__mobile-cta"
+            (click)="closeMobileMenu()">
+            {{ ctaNav.label }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile overlay -->
+@if (isMobileMenuOpen()) {
+  <div class="header__overlay" (click)="closeMobileMenu()"></div>
+}

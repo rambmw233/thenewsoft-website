@@ -1,0 +1,193 @@
+// ==============================================
+// TheNewSoft SCSS Mixins
+// ==============================================
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: #{$breakpoint-sm - 1}) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: #{$breakpoint-md - 1}) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: #{$breakpoint-lg - 1}) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: #{$breakpoint-xl - 1}) { @content; }
+  } @else if $breakpoint == '2xl' {
+    @media (max-width: #{$breakpoint-2xl - 1}) { @content; }
+  }
+}
+
+@mixin respond-from($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: #{$breakpoint-sm}) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: #{$breakpoint-md}) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: #{$breakpoint-lg}) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: #{$breakpoint-xl}) { @content; }
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+// Section padding
+@mixin section-padding {
+  padding: var(--space-20) 0;
+  @include respond-to('md') {
+    padding: var(--space-16) 0;
+  }
+  @include respond-to('sm') {
+    padding: var(--space-12) 0;
+  }
+}
+
+// Flex utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Card styles
+@mixin card-base {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-base);
+  border: 1px solid var(--color-border);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(37, 99, 235, 0.2);
+  }
+}
+
+@mixin dark-card {
+  background: var(--color-dark-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  border: 1px solid var(--color-border-dark);
+  transition: var(--transition-base);
+
+  &:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+  }
+}
+
+// Gradient text
+@mixin gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Button base
+@mixin btn-base {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+  text-decoration: none;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+@mixin btn-primary {
+  @include btn-base;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+  }
+}
+
+@mixin btn-outline {
+  @include btn-base;
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    border-color: var(--color-white);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin btn-outline-dark {
+  @include btn-base;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+  }
+}
+
+// Truncation
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Scrollbar
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 3px;
+  }
+}

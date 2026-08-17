@@ -1,0 +1,85 @@
+@use 'mixins' as *;
+
+.page-hero {
+  padding: 140px 0 80px;
+  text-align: center;
+  background: var(--gradient-hero);
+  &__title { font-size: var(--font-size-5xl); font-weight: var(--font-weight-bold); color: var(--color-white); margin-bottom: var(--space-4); @include respond-to('md') { font-size: var(--font-size-4xl); } }
+  &__subtitle { font-size: var(--font-size-xl); color: rgba(255,255,255,0.7); }
+}
+
+.tech-page {
+  &__group {
+    margin-bottom: var(--space-16);
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__group-header {
+    margin-bottom: var(--space-8);
+  }
+
+  &__group-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--space-2);
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+    }
+  }
+
+  &__group-desc {
+    color: var(--color-text-muted);
+    margin-top: var(--space-3);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--space-6);
+  }
+
+  &__card {
+    @include card-base;
+    text-align: center;
+  }
+
+  &__card-badge {
+    @include flex-center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    margin: 0 auto var(--space-4);
+  }
+
+  &__card-name {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  &__card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-3);
+  }
+
+  &__card-exp {
+    font-size: var(--font-size-xs);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+}

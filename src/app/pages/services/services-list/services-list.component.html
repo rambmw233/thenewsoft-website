@@ -1,0 +1,57 @@
+<section class="page-hero section--gradient">
+  <div class="container">
+    <h1 class="page-hero__title">Our Services</h1>
+    <p class="page-hero__subtitle">End-to-end software development services to help your business innovate, scale and succeed.</p>
+  </div>
+</section>
+
+<section class="services-page section">
+  <div class="container">
+    <div class="services-page__list">
+      @for (service of services; track service.id; let i = $index; let odd = $odd) {
+        <div class="services-page__item" [class.reverse]="odd">
+          <div class="services-page__content">
+            <h2 class="services-page__title">{{ service.title }}</h2>
+            <p class="services-page__description">{{ service.description }}</p>
+            <div class="services-page__features">
+              <h4>Key Features</h4>
+              <ul>
+                @for (feature of service.features; track feature) {
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    {{ feature }}
+                  </li>
+                }
+              </ul>
+            </div>
+            <div class="services-page__tech-tags">
+              @for (tech of service.technologies; track tech) {
+                <span class="services-page__tag">{{ tech }}</span>
+              }
+            </div>
+            <a [routerLink]="['/contact']" class="services-page__cta">Get Started</a>
+          </div>
+          <div class="services-page__visual">
+            <div class="services-page__visual-card">
+              <div class="services-page__visual-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+              </div>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.shortDescription }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="services-cta section section--gradient">
+  <div class="container" style="text-align: center;">
+    <h2 style="color: white; margin-bottom: var(--space-4);">Ready to Get Started?</h2>
+    <p style="color: rgba(255,255,255,0.8); margin-bottom: var(--space-8); max-width: 500px; margin-left: auto; margin-right: auto;">
+      Contact us to discuss your project requirements and how we can help.
+    </p>
+    <a routerLink="/contact" class="services-page__cta" style="background: white; color: var(--color-primary);">Contact Us</a>
+  </div>
+</section>

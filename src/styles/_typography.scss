@@ -1,0 +1,75 @@
+// ==============================================
+// Typography
+// ==============================================
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.15;
+
+  @media (max-width: 991px) {
+    font-size: var(--font-size-4xl);
+  }
+  @media (max-width: 767px) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+
+  @media (max-width: 991px) {
+    font-size: var(--font-size-3xl);
+  }
+  @media (max-width: 767px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+
+  @media (max-width: 767px) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+}
+
+.text-lead {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+}
