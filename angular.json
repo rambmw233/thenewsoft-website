@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ramtechs": {
+    "thenewsoft": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -103,10 +103,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ramtechs:build:production"
+              "buildTarget": "thenewsoft:build:production"
             },
             "development": {
-              "buildTarget": "ramtechs:build:development"
+              "buildTarget": "thenewsoft:build:development"
             }
           },
           "defaultConfiguration": "development"

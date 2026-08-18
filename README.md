@@ -86,7 +86,7 @@ npx ng build
 
 The production bundle is generated in:
 ```
-dist/ramtechs/browser/
+dist/thenewsoft/browser/
 ```
 *(Ready for static hosting on Cloudflare Pages, Netlify, Vercel, or AWS S3).*
 
@@ -209,7 +209,7 @@ export const COMPANY_CONFIG = {
 4. Set Build configuration:
    - **Framework preset**: `None` or `Angular`
    - **Build command**: `npm run build`
-   - **Build output directory**: `dist/ramtechs/browser`
+   - **Build output directory**: `dist/thenewsoft/browser`
    - **Environment variables**: Add `NODE_VERSION` = `20`
 5. Click **Save and Deploy**.
 
@@ -223,7 +223,7 @@ npm install -g wrangler
 npm run build
 
 # Deploy output folder
-wrangler pages deploy dist/ramtechs/browser --project-name=thenewsoft
+wrangler pages deploy dist/thenewsoft/browser --project-name=thenewsoft
 ```
 
 ---
